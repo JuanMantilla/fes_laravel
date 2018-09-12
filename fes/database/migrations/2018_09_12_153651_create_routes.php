@@ -16,12 +16,12 @@ class CreateRoutes extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('default_enlistment_time');
-            $table->dateTime('travel_time');
-            $table->string('start_time');
-            $table->dateTime('finish_time');
-            $table->dateTime('start_point');
-            $table->dateTime('finish_point');
+            $table->integer('default_enlistment_time');
+            $table->integer('travel_time');
+            $table->time('start_time');
+            $table->time('finish_time');
+            $table->string('start_point');
+            $table->string('finish_point');
             $table->timestamps();
         });
     }

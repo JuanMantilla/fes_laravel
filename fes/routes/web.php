@@ -29,6 +29,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::post('/register', 'Auth\RegisterController@create');
+Route::post('/create_route', 'RoutesController@create');
 
 Route::post('/login', 'Auth\LoginController@authenticate');
 Route::get('/logout', 'Auth\LoginController@logout');
