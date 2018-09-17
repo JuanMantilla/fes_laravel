@@ -17,11 +17,13 @@ class CreateRoutes extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->integer('default_enlistment_time');
-            $table->integer('travel_time');
             $table->time('start_time');
             $table->time('finish_time');
-            $table->string('start_point');
-            $table->string('finish_point');
+            $table->string('from');
+            $table->string('to');
+            $table->string('origin');
+            $table->string('destiny');
+            $table->float('distance');
             $table->timestamps();
         });
     }

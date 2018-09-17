@@ -11,7 +11,6 @@
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
             <input type="number" min="1" max="60" name="default_enlistment_time" id="inputDefault_enlistment_time" class="form-control" placeholder="default_enlistment_time" required>
-            <input type="number" min="1" max="60" name="travel_time"class="form-control" placeholder="travel_time" required>
             <input type="time" name="start_time" id="inputStart_time" class="form-control" placeholder="start_time" required>
             <input type="time" name="finish_time" id="inputFinish_time" class="form-control" placeholder="finish_time" required>
             <input type="text" name="start_point" id="inputStart_point" class="form-control" placeholder="start_point" required>

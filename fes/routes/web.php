@@ -32,8 +32,11 @@ Route::post('/register', 'Auth\RegisterController@create');
 Route::post('/create_route', 'RoutesController@create');
 
 Route::post('/login', 'Auth\LoginController@authenticate');
+Route::post('/store_demand', 'DemandsController@store');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/register_new_admin', function () {
     return view('register_admin');
 });
+
+

@@ -3,15 +3,41 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Route extends Model
 {
     protected $fillable = [
-        'default_enlistment_time', 'travel_time', 'start_time', 'finish_time', 'name', 'start_point', 'finish_point'
+        'default_enlistment_time', 'start_time', 'finish_time', 'name', 'origin', 'destiny',
+        'from', 'to', 'distance'
     ];
+
+    public function set_locations()
+    {
+        $api_key = 'AIzaSyBXInnwowGWskdjrHUynUlakjOkgitPRLk';
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins='.$this->origin.
+            '&destinations='.$this->destiny.'&key='.$api_key;
+        $response = json_decode(file_get_contents($url), true);
+
+        $this->distance = $response['rows'][0]['elements'][0]['distance']['value'];
+        $this->from = $response['destination_addresses'][0];
+        $this->to = $response['origin_addresses'][0];
+    }
 
     public function buses()
     {
         return $this->hasMany('App\Bus');
     }
+
+
+    public function calculate_travel_time(){
+        $api_key = 'AIzaSyBXInnwowGWskdjrHUynUlakjOkgitPRLk';
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins='.$this->origin.
+               '&destinations='.$this->destiny.'&key='.$api_key;
+
+        $response = json_decode(file_get_contents($url), true);
+        return(($response['rows'][0]['elements'][0]['duration']['value']));
+    }
+
+
 }

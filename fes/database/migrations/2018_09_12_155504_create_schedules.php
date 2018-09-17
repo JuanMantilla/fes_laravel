@@ -15,9 +15,10 @@ class CreateSchedules extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('departure_time')->unique();
-            $table->dateTime('enlistment_time');
-            $table->unsignedInteger('bus_id')->unique();
+            $table->time('departure_time');
+            $table->time('enlistment_time');
+            $table->string('day');
+            $table->integer('bus_id')->unsigned();
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
