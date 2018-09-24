@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use App\Schedule;
 use App\Bus;
 use App\Route;
+use App\Demand;
 class DemandsController extends Controller
 {
     private function demand(){
@@ -146,7 +147,6 @@ class DemandsController extends Controller
 
         $data = Excel::load($path, function($reader) {
         })->get();
-        $demand = $this->demand();
         if(!empty($data) && $data->count()){
             foreach ($data as $line) {
                 $quantity = 0;
@@ -156,50 +156,57 @@ class DemandsController extends Controller
                     }
                     elseif ($value){
                         $hour = explode("-", $value)[0];
-                        $demand[$key][$hour] += $quantity;
+                        $demand = new Demand();
+                        $demand->day = $key;
+                        $demand->hour = $hour;
+                        $demand->quantity = $quantity;
+                        $demand->save();
                     }
                 }
             }
         }
-        $buses = array();
-        foreach ($demand as $day=>$hour){
-            foreach ($hour as $hour=>$quantity){
-                array_push($buses,$this->calculate_buses($quantity, 50));
-            }
-        }
-        $number_of_buses = max($buses);
-        for ($i = 0; $i < $number_of_buses; $i++ ){
-            $bus = new Bus();
-            $bus->current_capacity=50;
-            $bus->max_capacity=50;
-            $bus->min_capacity=1;
-            $bus->name='X'.$i;
-            $bus->route_id=1;
-            $bus->save();
-        }
+        
+        
 
-        $route = Route::find(1)->get();
-        $buses = $route->buses()->get();
-        $travel_time =  ((int)$route->calculate_travel_time()/60)*2;
-        foreach ($demand as $day=>$hour){
-            foreach ($hour as $hour=>$quantity){
-                foreach ($buses as $bus)
-                    for ($i = 0; $i < $quantity; $i++ ){
-                        if ($bus->current_capacity > 1) {
-                            $bus->current_capacity -= 1;
-                        }
-                        else{
-                            break;
-                    }
-                    $schedule = new Schedule();
-                    $schedule->departure_time = ($route->default_enlistment_time+$travel_time)/sizeof($buses);
-                    $schedule->enlistment_time = $route->default_enlistment_time;
-                    $schedule->day = $day;
-                    $schedule->bus_id = $bus->id;
-                    $schedule->save();
-                }
-            }
-        }
+//        $buses = array();
+//        foreach ($demand as $day=>$hour){
+//            foreach ($hour as $hour=>$quantity){
+//                array_push($buses,$this->calculate_buses($quantity, 50));
+//            }
+//        }
+//        $number_of_buses = max($buses);
+//        for ($i = 0; $i < $number_of_buses; $i++ ){
+//            $bus = new Bus();
+//            $bus->current_capacity=50;
+//            $bus->max_capacity=50;
+//            $bus->min_capacity=1;
+//            $bus->name='X'.$i;
+//            $bus->route_id=1;
+//            $bus->save();
+//        }
+//
+//        $route = Route::find(1)->get();
+//        $buses = $route->buses()->get();
+//        $travel_time =  ((int)$route->calculate_travel_time()/60)*2;
+//        foreach ($demand as $day=>$hour){
+//            foreach ($hour as $hour=>$quantity){
+//                foreach ($buses as $bus)
+//                    for ($i = 0; $i < $quantity; $i++ ){
+//                        if ($bus->current_capacity > 1) {
+//                            $bus->current_capacity -= 1;
+//                        }
+//                        else{
+//                            break;
+//                    }
+//                    $schedule = new Schedule();
+//                    $schedule->departure_time = ($route->default_enlistment_time+$travel_time)/sizeof($buses);
+//                    $schedule->enlistment_time = $route->default_enlistment_time;
+//                    $schedule->day = $day;
+//                    $schedule->bus_id = $bus->id;
+//                    $schedule->save();
+//                }
+//            }
+//        }
 
     }
 

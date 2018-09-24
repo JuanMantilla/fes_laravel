@@ -14,14 +14,14 @@ class Route extends Model
 
     public function set_locations()
     {
-        $api_key = 'AIzaSyBXInnwowGWskdjrHUynUlakjOkgitPRLk';
-        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins='.$this->origin.
-            '&destinations='.$this->destiny.'&key='.$api_key;
-        $response = json_decode(file_get_contents($url), true);
+//        $api_key = 'AIzaSyBXInnwowGWskdjrHUynUlakjOkgitPRLk';
+//        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins='.$this->origin.
+//            '&destinations='.$this->destiny.'&key='.$api_key;
+//        $response = json_decode(file_get_contents($url), true);
 
-        $this->distance = $response['rows'][0]['elements'][0]['distance']['value'];
-        $this->from = $response['destination_addresses'][0];
-        $this->to = $response['origin_addresses'][0];
+        $this->distance = "123";//$response['rows'][0]['elements'][0]['distance']['value'];
+        $this->from = "qwdeqipj";//$response['destination_addresses'][0];
+        $this->to = "asdouh";//$response['origin_addresses'][0];
     }
 
     public function buses()
