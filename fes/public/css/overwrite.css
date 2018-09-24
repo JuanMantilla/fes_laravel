@@ -25,6 +25,22 @@ input.input-block-level{
 	padding:20px;
 }
 
+
+.add_margin_top_md{
+    margin-top: 3rem;
+}
+
+.add_margin_bottom_md{
+    margin-bottom: 3rem;
+}
+
+.home-buttons{
+    margin-left: 33rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 9px
+}
+
 .input-append input,
 .input-prepend input,
 .input-append select,

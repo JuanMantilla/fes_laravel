@@ -15,6 +15,11 @@ class Bus extends Model
         return $this->hasMany('App\Passenger');
     }
 
+    public function demands()
+    {
+        return $this->hasMany('App\Demand');
+    }
+
     public function route()
     {
         return $this->belongsTo('App\Route');

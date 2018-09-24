@@ -18,6 +18,9 @@ class CreateDemands extends Migration
             $table->string('day');
             $table->string('hour');
             $table->integer('quantity')->unsigned();
+            $table->integer('route_id')->unsigned();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

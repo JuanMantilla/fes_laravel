@@ -144,7 +144,7 @@ class DemandsController extends Controller
     public function store(Request $request)
     {
         $path = 'storage/app/'.$request->file('demand')->storeAs('demands', 'demand.csv');
-
+        $route = Route::find(1)->get()->first();
         $data = Excel::load($path, function($reader) {
         })->get();
         if(!empty($data) && $data->count()){
@@ -160,6 +160,7 @@ class DemandsController extends Controller
                         $demand->day = $key;
                         $demand->hour = $hour;
                         $demand->quantity = $quantity;
+                        $demand->route_id = $route->id;
                         $demand->save();
                     }
                 }

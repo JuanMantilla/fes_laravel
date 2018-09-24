@@ -25,10 +25,12 @@ Route::get('/register', function () {
     return view('register');
 });
 Route::get('/home', function () {
-    return view('home');
+    $routes = App\Route::all();
+    return view('home')->with('routes', $routes);
 })->name('home');
 
 Route::post('/register', 'Auth\RegisterController@create');
+Route::post('/buses', 'BusesController@create_from_route');
 Route::post('/create_route', 'RoutesController@create');
 
 Route::post('/login', 'Auth\LoginController@authenticate');

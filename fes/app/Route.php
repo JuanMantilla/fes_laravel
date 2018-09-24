@@ -24,7 +24,12 @@ class Route extends Model
         $this->to = "asdouh";//$response['origin_addresses'][0];
     }
 
-    public function buses()
+    public function demand()
+    {
+        return $this->hasMany('App\Demand');
+    }
+
+    public function routes()
     {
         return $this->hasMany('App\Bus');
     }
