@@ -14,4 +14,8 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Route');
     }
+
+    public function bus(){
+        return $this->belongsTo('App\Bus');
+    }
 }

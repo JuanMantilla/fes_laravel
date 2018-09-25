@@ -10,7 +10,7 @@ class BusesController extends Controller
 {
     public function create_from_route(Request $request){
         $route_id = (int)$request->input('route');
-        $demands = Route::find($route_id)->demand;
+        $demands = Route::find($route_id)->demands;
         $buses = array();
         foreach ($demands as $demand){
             array_push($buses,$this->calculate_buses($demand->quantity, 50));
@@ -26,6 +26,7 @@ class BusesController extends Controller
             $bus->route_id=1;
             $bus->save();
         }
+        return redirect('home');
     }
 
     public function calculate_buses($demand, $max_capacity)

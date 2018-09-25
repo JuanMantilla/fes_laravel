@@ -16,7 +16,7 @@ class CreateDemands extends Migration
         Schema::create('demands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('day');
-            $table->string('hour');
+            $table->time('hour');
             $table->integer('quantity')->unsigned();
             $table->integer('route_id')->unsigned();
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');

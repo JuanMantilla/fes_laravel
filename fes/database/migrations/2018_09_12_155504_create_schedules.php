@@ -20,6 +20,8 @@ class CreateSchedules extends Migration
             $table->string('day');
             $table->integer('bus_id')->unsigned();
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->integer('route_id')->unsigned();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateSchedules extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('schedules');
     }
 }

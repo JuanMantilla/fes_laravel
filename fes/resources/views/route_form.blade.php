@@ -8,5 +8,5 @@
     <input type="text" name="start_point" id="inputStart_point" class="form-control" placeholder="start_point" required>
     <input type="text" name="finish_point" id="inputFinish_point" class="form-control" placeholder="finish_point" required>
 
-    <button class="add_margin_bottom_md btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+    <button class="add_margin_bottom_md add_margin_top_md btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
 </form><!-- /form -->

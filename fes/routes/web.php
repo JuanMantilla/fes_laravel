@@ -32,6 +32,8 @@ Route::get('/home', function () {
 Route::post('/register', 'Auth\RegisterController@create');
 Route::post('/buses', 'BusesController@create_from_route');
 Route::post('/create_route', 'RoutesController@create');
+Route::post('/schedule', 'ScheduleController@store_schedule');
+Route::post('/show_schedule', 'ScheduleController@show_schedule');
 
 Route::post('/login', 'Auth\LoginController@authenticate');
 Route::post('/store_demand', 'DemandsController@store');

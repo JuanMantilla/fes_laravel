@@ -24,14 +24,19 @@ class Route extends Model
         $this->to = "asdouh";//$response['origin_addresses'][0];
     }
 
-    public function demand()
+    public function demands()
     {
         return $this->hasMany('App\Demand');
     }
 
-    public function routes()
+    public function buses()
     {
         return $this->hasMany('App\Bus');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule');
     }
 
 
