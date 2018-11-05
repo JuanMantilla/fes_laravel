@@ -46,7 +46,7 @@ class Route extends Model
                '&destinations='.$this->destiny.'&key='.$api_key;
 
         $response = json_decode(file_get_contents($url), true);
-        return(($response['rows'][0]['elements'][0]['duration']['value']));
+        return(($response['rows'][0]['elements'][0]['duration']['value'])/60);
     }
 
 

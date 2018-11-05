@@ -16,13 +16,14 @@ class ScheduleController extends Controller
         $route = Route::find($route_id);
         $demands = $route->demands()->get();
 
-        $travel_time = ((int)$route->calculate_travel_time() / 60) * 2;
+        $travel_time = ((int)$route->calculate_travel_time()) * 2;
         foreach ($demands as $demand) {
             $buses = $route->buses()->where('current_capacity', '>', 1)->get();
             $hour_date = DateTime::createFromFormat('H:i:s', ($demand->hour));
             $departure_time = $this->calculate_dt(
                 $route->default_enlistment_time,
                 $travel_time, sizeof($buses));
+
             foreach ($buses as $bus) {
 
                     if ($demand->quantity < $bus->current_capacity and $demand->quantity > 0){

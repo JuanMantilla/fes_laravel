@@ -36,7 +36,6 @@ class DemandsController extends Controller
                         $hour = explode("-", $value)[0];
                         $hour = str_split($hour);
                         $hour = $hour[0].$hour[1].":00:00";
-                        $hour = DateTime::createFromFormat('H:i:s', ($hour));
                         try {
                             $demand = Demand::where('day', $key)
                                 ->where('hour', $hour)->firstOrFail();

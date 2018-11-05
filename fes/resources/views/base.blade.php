@@ -33,11 +33,9 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="fa fa-bars color-white"></span>
             </button>
-            <div class="navbar-logo">
-                <a href="index.html"><img data-0="width:155px;" data-300=" width:120px;" src="img/logo.png" alt=""></a>
-            </div>
         </div>
 
+        <!--/.navbar-collapse -->
     </div>
 </div>
 
